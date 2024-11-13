@@ -17,12 +17,16 @@ public class JpaMain {
         try {
 
             Member member = new Member();
-            member.setId(100L);
-            member.setName("Hello,JPA");
-            // 위까지는 비영속 상태
-            em.persist(member); // 영속
+            member.setId(101L);
+            member.setName("Hello,JPA2");
+
             System.out.println("-----------------Before-------------------");
+            em.persist(member);
             System.out.println("-----------------After-------------------");
+
+            Member findMember = em.find(Member.class, 101L);
+            System.out.println(findMember.toString()); // DB가 아닌, 1차캐시에서 조회
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
