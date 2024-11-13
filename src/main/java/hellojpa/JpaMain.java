@@ -15,9 +15,11 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member(200L, "member200");
-            em.persist(member);
-            em.flush();// 아래의 출력보다 이전에 쿼리가 들어간다
+            Member member = em.find(Member.class, 150L);
+            member.setName("AAAAAAA");
+
+            em.detach(member); // 준영속상태라 commit되지 않음.
+
             System.out.println("==============");
 
             tx.commit();
