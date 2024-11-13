@@ -14,12 +14,9 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setId(2L);
-            member.setName("HelloC");
-
-            em.persist(member);
-
+            Member findMember = em.find(Member.class, 1L);
+            findMember.setName("HelloADAD");
+            // 이렇게 setter만으로도 끝남.
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
