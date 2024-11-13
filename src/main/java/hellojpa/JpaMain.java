@@ -15,14 +15,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-            // JPQL을 통해서도 가져 올 수 있다.
-            // 조건을 사용할때, 페이징
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .setMaxResults(3)
-                            .getResultList();
-            for (Member member : result) {
-                System.out.println(member.toString());
-            }
+
+            Member member = new Member();
+            member.setId(100L);
+            member.setName("Hello,JPA");
+            // 위까지는 비영속 상태
+            em.persist(member); // 영속
+            System.out.println("-----------------Before-------------------");
+            System.out.println("-----------------After-------------------");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
