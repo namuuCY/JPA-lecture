@@ -15,11 +15,12 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = em.find(Member.class, 150L);
-            member.setName("ZZZZZ");
-            System.out.println("================");
-            tx.commit(); // query는 get한 것과 update된 것이 둘 다 실행 됨.
-            // 마치 collection의 멤버를 바꿨을 때 바꾸고 put할 필요 없는 것 처럼.
+            Member member = new Member(200L, "member200");
+            em.persist(member);
+            em.flush();// 아래의 출력보다 이전에 쿼리가 들어간다
+            System.out.println("==============");
+
+            tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
