@@ -15,17 +15,13 @@ public class JpaMain {
         tx.begin();
 
         try {
-
-            Member member = new Member();
-            member.setId(101L);
-            member.setName("Hello,JPA2");
-
+            Member findMember1 = em.find(Member.class, 101L);
+            Member findMember2 = em.find(Member.class, 101L);
             System.out.println("-----------------Before-------------------");
-            em.persist(member);
+
             System.out.println("-----------------After-------------------");
 
-            Member findMember = em.find(Member.class, 101L);
-            System.out.println(findMember.toString()); // DB가 아닌, 1차캐시에서 조회
+            System.out.println(findMember1.toString());
 
             tx.commit();
         } catch (Exception e) {
