@@ -21,7 +21,7 @@ public class JpaMain {
 
             System.out.println("-----------------After-------------------");
 
-            System.out.println(findMember1.toString());
+            System.out.println(findMember1 == findMember2); // true
 
             tx.commit();
         } catch (Exception e) {
