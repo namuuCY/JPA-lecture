@@ -15,13 +15,11 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member1 = new Member(150L, "A");
-            Member member2 = new Member(151L, "B");
-            em.persist(member1);
-            em.persist(member2);
-            System.out.println("==============");
-            // commit 하고 나서야 query를 날린다.
-            tx.commit();
+            Member member = em.find(Member.class, 150L);
+            member.setName("ZZZZZ");
+            System.out.println("================");
+            tx.commit(); // query는 get한 것과 update된 것이 둘 다 실행 됨.
+            // 마치 collection의 멤버를 바꿨을 때 바꾸고 put할 필요 없는 것 처럼.
         } catch (Exception e) {
             tx.rollback();
         } finally {
