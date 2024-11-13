@@ -1,6 +1,7 @@
 package hellojpa;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 public class JpaMain {
 
@@ -14,9 +15,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member findMember = em.find(Member.class, 1L);
-            findMember.setName("HelloADAD");
-            // 이렇게 setter만으로도 끝남.
+            // JPQL을 통해서도 가져 올 수 있다.
+            // 조건을 사용할때, 페이징
+            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+                    .setMaxResults(3)
+                            .getResultList();
+            for (Member member : result) {
+                System.out.println(member.toString());
+            }
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
