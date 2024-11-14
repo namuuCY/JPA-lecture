@@ -10,15 +10,13 @@ public class JpaMain {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
 
-        // jdbc에는 transcation 이 중요하다.
+//        <property name="hibernate.hbm2ddl.auto" value="create" />
+        // 이 property를 하면 DDL로 새로 생성함.
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         try {
-            Member member = em.find(Member.class, 150L);
-            member.setName("AAAAAAA");
 
-            em.detach(member); // 준영속상태라 commit되지 않음.
 
             System.out.println("==============");
 
