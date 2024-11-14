@@ -10,8 +10,7 @@ public class JpaMain {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
 
-//        <property name="hibernate.hbm2ddl.auto" value="create" />
-        // 이 property를 하면 DDL로 새로 생성함.
+
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
@@ -19,8 +18,9 @@ public class JpaMain {
             Member member = new Member();
             member.setUsername("asdf");
 
+            System.out.println("=====================");
             em.persist(member);
-
+            System.out.println("member.id = " + member.getId());
             System.out.println("==============");
 
             tx.commit();

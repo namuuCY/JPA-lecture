@@ -28,12 +28,11 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "member_seq_generator", sequenceName = "member_seq")
+@SequenceGenerator(name = "M_SEQ_GEN", sequenceName = "M_SEQ", initialValue = 1, allocationSize = 50)
 public class Member {
-    // JPA는 내부적으로 Reflection을 사용
-    // 내부적으로 객체를 생성해낸다. => 기본 생성자가 꼭필요하다.
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "M_SEQ_GEN")
     private Long id;
 
     @Column(name = "name", nullable = false)
