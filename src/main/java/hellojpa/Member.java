@@ -30,12 +30,12 @@ public class Member {
     @Id
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", updatable = false, nullable = false)
     private String username;
 
     private Integer age;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private RoleType roleType; // Enum type을 쓰고 싶을 때
 
     @Temporal(TemporalType.TIMESTAMP)
