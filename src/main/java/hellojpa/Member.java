@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.AllArgsConstructor;
@@ -35,11 +36,10 @@ public class Member {
 
     private Integer age;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private RoleType roleType; // Enum type을 쓰고 싶을 때
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
+    private LocalDateTime createDate;
 
     @Temporal(TemporalType.TIMESTAMP) // date + time timestamp타입.
     private Date lastModifiedDate; // 보통 DB는 date, time, timestamp 구분됨.

@@ -17,9 +17,9 @@ public class JpaMain {
 
         try {
             Member member = new Member();
-            member.setId(44L);
+            member.setId(2L);
             member.setUsername("asdf");
-            member.setRoleType(RoleType.ADMIN);
+            member.setRoleType(RoleType.USER);
             // Enumtype.ORDINAL은 enum을 숫자로 대응한다.
             // 그런데 Enum에 GUEST를 추가하면 GUEST 가 다시 0이됨.
 
