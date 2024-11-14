@@ -9,6 +9,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.AllArgsConstructor;
@@ -46,4 +47,7 @@ public class Member {
     @Lob
     private String Description; // @Lob : large object
     // 문자 타입이면 clob, 파일이면 blob
+
+    @Transient
+    private int temp; //  이렇게 실행할 경우, DB에는 사용 X
 }
