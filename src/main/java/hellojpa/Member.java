@@ -15,7 +15,9 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -48,5 +50,9 @@ public class Member {
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     Locker locker;
+
+    @ManyToMany
+    @JoinTable(name = "MEMBER_PRODUCT")
+    List<Product> products = new ArrayList<>();
 
 }
