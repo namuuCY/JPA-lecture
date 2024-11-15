@@ -41,7 +41,11 @@ public class Member {
     @Column(name = "USERNAME")
     String username;
 
-    @Column(name = "TEAM_ID")
-    Long teamId;
+//    @Column(name = "TEAM_ID")
+//    Long teamId;
+    @ManyToOne // Member가 N이고 Team이 1이니까
+    @JoinColumn(name = "TEAM_ID")
+    Team team;
+    // 이렇게 사용하면 JPA에서 어노테이션 매핑을 요구
 
 }

@@ -22,7 +22,7 @@ import lombok.experimental.FieldDefaults;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     @Column(name = "TEAM_ID")
     Long id;
 
