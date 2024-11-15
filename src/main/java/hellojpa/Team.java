@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +31,8 @@ public class Team {
 
     String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
     List<Member> members = new ArrayList<>(); // 관례로 NPE방지를 위해 넣는다.
 
-    public void addMember(Member member) {
-        member.setTeam(this);
-        members.add(member);
-    }
 }
