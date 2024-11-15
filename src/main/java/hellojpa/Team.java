@@ -32,7 +32,7 @@ public class Team {
     String name;
 
     @OneToMany
-    @JoinColumn(name = "TEAM_ID")
+//    @JoinColumn(name = "TEAM_ID")
     List<Member> members = new ArrayList<>(); // 관례로 NPE방지를 위해 넣는다.
 
 }

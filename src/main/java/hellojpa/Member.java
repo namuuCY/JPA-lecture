@@ -41,4 +41,12 @@ public class Member {
     @Column(name = "USERNAME")
     String username;
 
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
+    Team team;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    Locker locker;
+
 }
