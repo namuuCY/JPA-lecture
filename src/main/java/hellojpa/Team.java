@@ -32,4 +32,9 @@ public class Team {
 
     @OneToMany(mappedBy = "team")
     List<Member> members = new ArrayList<>(); // 관례로 NPE방지를 위해 넣는다.
+
+    public void addMember(Member member) {
+        member.setTeam(this);
+        members.add(member);
+    }
 }

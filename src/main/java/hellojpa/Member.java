@@ -48,4 +48,8 @@ public class Member {
     Team team;
     // 이렇게 사용하면 JPA에서 어노테이션 매핑을 요구
 
+    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
 }

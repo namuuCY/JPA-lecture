@@ -16,20 +16,28 @@ public class JpaMain {
 
         try {
 
-            Member member = new Member();
-            member.setUsername("member123");
-            em.persist(member);
-
             Team team = new Team();
-            team.setName("TeamA");
-            team.getMembers().add(member);
-// insert쿼리가 member, team들어가도 teamId 매핑안됨
-            // 당연하지. 연관관계의 주인이 member인데 team에 집어넣으니까 안되는 것
+            team.setName("TeamB");
+//            team.getMembers().add(member);
             em.persist(team);
 
+            Member member = new Member();
+            member.setUsername("member13413");
+            em.persist(member);
+
+            team.addMember(member);
+
+            em.flush();
+            em.clear();
+
+            Team findTeam = em.find(Team.class, team.getId());
+            List<Member> members = findTeam.getMembers();
+
+            for (Member m : members) {
+                System.out.println("m = " + m.getUsername());
+            }
+
             tx.commit();
-
-
         } catch (Exception e) {
             e.printStackTrace();
             tx.rollback();
