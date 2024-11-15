@@ -1,5 +1,7 @@
 package hellojpa;
 
+import hellojpa.domain.Order;
+import hellojpa.domain.OrderItem;
 import jakarta.persistence.*;
 
 public class JpaMain {
@@ -14,8 +16,11 @@ public class JpaMain {
 
         try {
 
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
+            em.persist(order);
 
-
+            tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
