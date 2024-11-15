@@ -1,5 +1,6 @@
 package hellojpa;
 
+import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,26 +17,31 @@ import jakarta.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 @Entity
 @Getter
 @Setter
 @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
-@AllArgsConstructor
-@SequenceGenerator(name = "M_SEQ_GEN", sequenceName = "M_SEQ", initialValue = 1, allocationSize = 50)
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "M_SEQ_GEN")
-    private Long id;
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
+    Long id;
 
-    @Column(name = "name", nullable = false)
-    private String username;
+    @Column(name = "USERNAME")
+    String username;
+
+    @Column(name = "TEAM_ID")
+    Long teamId;
 
 }

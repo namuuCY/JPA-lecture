@@ -3,6 +3,7 @@ package hellojpa;
 import jakarta.persistence.*;
 import java.util.List;
 
+
 public class JpaMain {
 
     public static void main(String[] args) {
@@ -10,21 +11,14 @@ public class JpaMain {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
 
-
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setUsername("asdf");
-
-            System.out.println("=====================");
-            em.persist(member);
-            System.out.println("member.id = " + member.getId());
-            System.out.println("==============");
 
             tx.commit();
         } catch (Exception e) {
+            e.printStackTrace();
             tx.rollback();
         } finally {
             em.close();
