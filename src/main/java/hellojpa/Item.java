@@ -1,5 +1,6 @@
 package hellojpa;
 
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -15,6 +16,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn
 public class Item {
 
     @Id
