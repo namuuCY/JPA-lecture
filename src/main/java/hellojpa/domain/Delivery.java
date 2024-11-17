@@ -1,5 +1,7 @@
 package hellojpa.domain;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -19,7 +21,7 @@ public class Delivery extends BaseEntity {
     String zipcode;
     DeliveryStatus status;
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = LAZY)
     Order order;
 
 

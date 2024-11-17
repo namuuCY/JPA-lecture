@@ -1,5 +1,7 @@
 package hellojpa.domain;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,13 +27,13 @@ public class OrderItem extends BaseEntity {
 
     //    @Column(name = "ORDER_ID")
 //    Long orderId;
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ORDER_ID")
     Order order;
 
 //    @Column(name = "MEMBER_ID")
 //    Long memberId;
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ITEM_ID")
     Item item;
 
