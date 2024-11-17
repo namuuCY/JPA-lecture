@@ -25,12 +25,13 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-//            Member findMember = em.find(Member.class, member.getId());
-            Member findMember = em.getReference(Member.class, member.getId());
-            // 사용을 안하면 SELECT query안나감
-            System.out.println(findMember instanceof Member); //true
-            // 사용하면 쿼리가 나감.
+            Member m1 = em.find(Member.class, member.getId());
+            System.out.println(m1.getClass());
 
+            Member reference = em.getReference(Member.class, member.getId());
+            System.out.println(reference.getClass());
+            System.out.println(m1 == reference); //true
+            //proxy로 해도 이미 m1으로 멤버를 조회했기 때문에 이것 또한 Member class로 나옴.
 
             tx.commit();
         } catch (Exception e) {
