@@ -25,8 +25,8 @@ public class JpaMain {
             member.getFavoriteFoods().add("피자");
             member.getFavoriteFoods().add("족발");
 
-            member.getAddressHistory().add(new Address("old1", "street", "zipcode"));
-            member.getAddressHistory().add(new Address("old2", "street", "zipcode"));
+            member.getAddressHistory().add(new AddressEntity(new Address("old1", "street", "zipcode")));
+            member.getAddressHistory().add(new AddressEntity(new Address("old2", "street", "zipcode")));
 
             em.persist(member);
 
@@ -38,6 +38,11 @@ public class JpaMain {
 
             find.setHomeAddress(new Address("newnewCity", "street", "zipcode"));
 
+            find.getFavoriteFoods().remove("치킨");
+            find.getFavoriteFoods().add("한식");
+
+            find.getAddressHistory().remove(new AddressEntity(new Address("old1", "street", "zipcode")) );
+            find.getAddressHistory().add(new AddressEntity(new Address("newcity1", "street", "10000")));
 
             tx.commit();
         } catch (Exception e) {
