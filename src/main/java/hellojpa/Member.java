@@ -33,7 +33,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseEntity{
 
     @Id
     @GeneratedValue

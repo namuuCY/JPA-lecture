@@ -1,6 +1,7 @@
 package hellojpa;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,18 +17,13 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Movie movie = new Movie();
-            movie.setDirector("aaaa");
-            movie.setActor("bbb");
-            movie.setName("바람과함께");
-            movie.setPrice(10000);
-            em.persist(movie);
+            Member member = new Member();
+            member.setUsername("user1");
+            member.setCreatedBy("Kim");
+            member.setCreatedDate(LocalDateTime.now());
 
-            em.flush();
-            em.clear();
+            em.persist(member);
 
-            Movie findMovie = em.find(Movie.class, movie.getId());
-            System.out.println(findMovie);
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
