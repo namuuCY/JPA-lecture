@@ -35,11 +35,8 @@ public class JpaMain {
 
             System.out.println("===============");
             Member find = em.find(Member.class, member.getId());
-            List<Address> history = find.getAddressHistory();
 
-            for (Address a : history) {
-                System.out.println(a.getCity());
-            }
+            find.setHomeAddress(new Address("newnewCity", "street", "zipcode"));
 
 
             tx.commit();
