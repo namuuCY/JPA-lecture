@@ -19,19 +19,15 @@ public class JpaMain {
         try {
             Member member = new Member();
             member.setUsername("user1");
-
             em.persist(member);
 
             em.flush();
             em.clear();
 
-            Member m1 = em.find(Member.class, member.getId());
-            System.out.println(m1.getClass());
-
             Member reference = em.getReference(Member.class, member.getId());
-            System.out.println(reference.getClass());
-            System.out.println(m1 == reference); //true
-            //proxy로 해도 이미 m1으로 멤버를 조회했기 때문에 이것 또한 Member class로 나옴.
+            em.detach(reference);
+
+            System.out.println(reference.getUsername());
 
             tx.commit();
         } catch (Exception e) {
