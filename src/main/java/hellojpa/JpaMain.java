@@ -17,19 +17,18 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Address address  = new Address("city", "street", "10000");
-            Member member1 = new Member();
-            member1.setUsername("member1");
-            member1.setHomeAddress(address);
-            em.persist(member1);
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setHomeAddress(new Address("homecity", "street", "zipcode"));
 
-            Address newadd = new Address(address.getCity(), address.getStreet(), address.getZipcode());
-//          위처럼 새로 객체 만들어서 집어넣어야한다.
+            member.getFavoriteFoods().add("치킨");
+            member.getFavoriteFoods().add("피자");
+            member.getFavoriteFoods().add("족발");
 
-            Member member2 = new Member();
-            member2.setUsername("member2");
-            member2.setHomeAddress(newadd);
-            em.persist(member2);
+            member.getAddressHistory().add(new Address("old1", "street", "zipcode"));
+            member.getAddressHistory().add(new Address("old2", "street", "zipcode"));
+
+            em.persist(member);
 
             tx.commit();
         } catch (Exception e) {
