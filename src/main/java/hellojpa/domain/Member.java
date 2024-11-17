@@ -16,7 +16,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Member {
+public class Member extends BaseEntity {
     // 메타데이터는 Entity class내에 적어두는 것을 선호.
     // Index도 마찬가지. index도 @table에 집어넣기
     @Id

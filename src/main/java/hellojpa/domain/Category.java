@@ -15,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Category {
+public class Category extends BaseEntity {
     @Id
     @GeneratedValue
     Long id;
