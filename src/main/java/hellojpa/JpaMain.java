@@ -30,6 +30,18 @@ public class JpaMain {
 
             em.persist(member);
 
+            em.flush();
+            em.clear();
+
+            System.out.println("===============");
+            Member find = em.find(Member.class, member.getId());
+            List<Address> history = find.getAddressHistory();
+
+            for (Address a : history) {
+                System.out.println(a.getCity());
+            }
+
+
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
