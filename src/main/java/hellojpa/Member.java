@@ -33,7 +33,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
-public class Member extends BaseEntity{
+public class Member{
 
     @Id
     @GeneratedValue
@@ -54,4 +54,8 @@ public class Member extends BaseEntity{
     @OneToMany(mappedBy = "member")
     List<MemberProduct> memberProducts = new ArrayList<>();
 
+    @Embedded
+    private Period workPeriod;
+    @Embedded
+    private Address homeAddress;
 }
