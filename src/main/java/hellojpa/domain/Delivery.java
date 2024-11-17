@@ -2,6 +2,7 @@ package hellojpa.domain;
 
 import static jakarta.persistence.FetchType.LAZY;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,9 +17,8 @@ public class Delivery extends BaseEntity {
     @GeneratedValue
     Long id;
 
-    String city;
-    String street;
-    String zipcode;
+    @Embedded
+    Address address;
     DeliveryStatus status;
 
     @OneToOne(mappedBy = "delivery", fetch = LAZY)

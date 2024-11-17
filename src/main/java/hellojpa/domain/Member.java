@@ -1,6 +1,7 @@
 package hellojpa.domain;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,9 +25,8 @@ public class Member extends BaseEntity {
     @Column(name = "MEMBER_ID")
     Long id;
     String name;
-    String city;
-    String street;
-    String zipcode;
+    @Embedded
+    Address address;
 
     @OneToMany(mappedBy = "member")
     List<Order> orders = new ArrayList<>();
