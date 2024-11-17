@@ -23,13 +23,13 @@ public class JpaMain {
             member1.setHomeAddress(address);
             em.persist(member1);
 
+            Address newadd = new Address(address.getCity(), address.getStreet(), address.getZipcode());
+//          위처럼 새로 객체 만들어서 집어넣어야한다.
+
             Member member2 = new Member();
             member2.setUsername("member2");
-            member2.setHomeAddress(address);
+            member2.setHomeAddress(newadd);
             em.persist(member2);
-
-            // 아래처럼 쓸 경우, member1, member2의 주소가 같이 바뀌는 side effect발생
-            member1.getHomeAddress().setCity("newCity");
 
             tx.commit();
         } catch (Exception e) {
