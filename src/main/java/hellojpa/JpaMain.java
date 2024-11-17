@@ -19,10 +19,17 @@ public class JpaMain {
         try {
             Member member = new Member();
             member.setUsername("user1");
-            member.setCreatedBy("Kim");
-            member.setCreatedDate(LocalDateTime.now());
 
             em.persist(member);
+
+            em.flush();
+            em.clear();
+
+//            Member findMember = em.find(Member.class, member.getId());
+            Member findMember = em.getReference(Member.class, member.getId());
+            // 사용을 안하면 SELECT query안나감
+            System.out.println(findMember.getClass());
+            // 사용하면 쿼리가 나감.
 
             tx.commit();
         } catch (Exception e) {
